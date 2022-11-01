@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Ricardo">
+  <meta name="keywords" content="">
+  
+  <title>链接，装载和库 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"ricardo-m-sakura.github.io.git","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="链接，装载和库">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-13 12:45" pubdate>
+        July 13, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">链接，装载和库</h1>
+            
+            <div class="markdown-body">
+              <h5 id="前段时间在看的一本书，比较详细的讲了程序的链接，装载等过程。在此写下一篇读书笔记。"><a href="#前段时间在看的一本书，比较详细的讲了程序的链接，装载等过程。在此写下一篇读书笔记。" class="headerlink" title="前段时间在看的一本书，比较详细的讲了程序的链接，装载等过程。在此写下一篇读书笔记。"></a>前段时间在看的一本书，比较详细的讲了程序的链接，装载等过程。在此写下一篇读书笔记。</h5><p>​    首先，操作系统做了什么：OS的一个功能是提供抽象的接口，另外一个功能是管理硬件资源。</p>
+<p>​    所有的程序都以进程（Process）的方式运行在比OS权限更低的级别，每个进程有独立的地址空间，每个进程间的地址空间相互隔离。CPU由OS统一分配。进程根据优先级的不同，会有机会得到CPU，但是如果某个进程的运行时间超过一定范围，OS会停止该进程，将CPU分配给其他进程。这种方式称为抢占式。 （关于OS的笔记我会在另外一篇文章中详细的叙述。这里就不过多叙述）</p>
+<h5 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h5><p>​    一个程序的运行一般分为四个步骤：预处理，编译，汇编，链接。</p>
+<p>​    编译的过程一般分为六步：扫描，语法分析，语义分析，源代码优化，代码生成和目标代码优化。</p>
+<p>​    现代软件设计追求模块化。而静态链接就是把不同模块组装在一起，把不同模块相互引用的部分处理好，主要有三个步骤：地址和空间分配，符号决议，重定位。    </p>
+<p>​    编译器编译后但是还未链接的文件叫做目标文件（.o文件），这种文件的格式和可执行文件的格式很相似，一般采用同种格式存储。PC平台流行两种可执行文件，一种是Windows下的PE（Portable Executable）格式，另外一种是Linux下的ELF（Executable Linkable Format）。</p>
+<p>​    ELF文件将信息按照段的形式存储，ELF文件开头是一个“Header”,描述的是整个文件的属性，例如文件是否可执行，是静态链接还是动态链接等，文件头还包括一个段表 ，段表是文件中描述各个段的数组，比如描述了各个段在文件中的偏移位置以及一些属性，文件头之后跟的就是各个段的内容，编译后的机器指令放在.code或者也叫.text段里，全局变量和局部静态变量放在.data段，值得注意的是，已经初始化的全局变量和局部静态变量保存在.data段，而未初始化的全局变量和局部静态变量保存在.bss段，但是.bss段只是为这些未初始化的变量预留位置，并没有内容，所以在文件中也不占空间。我们可以在Linux中用readelf命令来查看ELF文件。<br><img src="/images/image-20210713133815842.png" srcset="/img/loading.gif" lazyload></p>
+<p>​     7F 45 4C 46是ELF文件专属的魔数，此外文件头还定义了文件机器字节长度，数据额存储方式，版本，运行平台等。</p>
+<p>​    目标文件中会有.rel.xxxx.的段，就是上文所述的重定位表（Relocation Table），如果目标文件中有需要重定位的部分，这些重定位的信心就记录在重定位表中。</p>
+<p>​    链接的本质就是把多个不同的目标文件相互“粘”在一起，在链接中，目标文件的相互缝合,实际上就是目标文件之间对地址的引用，即，对函数和变量地址的引用。在链接中，每个函数和变量都有自己独特的名字，我们统称为符号（Symbol），函数名或者变量名就是符号名。符号就是链接中的粘合剂，链接过程就是基于符号才能完成，每个目标文件都会有一个符号表，表里面记录了目标文件中所有用到的符号，每个符号有一个对应的值叫做符号值，对于变量和函数来说，符号值就是他们的地址。为了防止函数名称冲突，引入了函数签名，函数签名包含了函数的信息，例如函数名，函数的参数类型，所在的命名空间（namespace），在编译器和链接器处理符号时，就会采用某种名称修饰的办法，使得每个函数签名都对应一个修饰后的名称。</p>
+<h5 id="静态连接"><a href="#静态连接" class="headerlink" title="静态连接"></a>静态连接</h5><p>​    链接的第一个阶段，空间与地址分配，链接器在将不同的目标文件合并的时候，会将相似段合并到一起。使用这种链接方法的链接器一般都采用两部链接的方法。第一步 空间与地址分配。第二部 符号解析与重定位。在连接过程中，所有目标文件中的符号会被收集起来，组成一个全局符号表。符号解析的过程就需要到全局符号表中去查找相关的符号。</p>
+<p>​    一个程序之所以有用是因为有输入和输出。想要实现输入和输出，最简单的办法就是调用操作系统API，例如printf在Linux下就是调用write。Windows下就是调用writeconsole。</p>
+<p>​    一个静态库可以看作是一组目标文件的集合，即很多目标文件经过压缩打包后的一个文件。Linux中常用的C语言静态库的就是libc。</p>
+<h5 id="装载与进程"><a href="#装载与进程" class="headerlink" title="装载与进程"></a>装载与进程</h5><h6 id="虚拟空间"><a href="#虚拟空间" class="headerlink" title="虚拟空间"></a>虚拟空间</h6><p>每个进程都有自己的虚拟地址空间，而虚拟空间的大小是由硬件决定的。32位平台下的虚拟地址空间大小就是0x00000000~0xFFFFFFFF，就是4GB。但是4GB大小的虚拟地址空间不是都可以用的，Linux下1GB是操作系统本身需要的另外3GB是留给进程使用的，对于Windows下，是2GB留给OS，2GB留给进程，但是可以通过配置，就可以和Linux下一样。</p>
+<h6 id="装载："><a href="#装载：" class="headerlink" title="装载："></a>装载：</h6><p>​    程序执行时需要的指令和数据必须在内存中才能正常运行，最简单的办法就是需要的全部装进去，但是很浪费内存，解决办法就是程序的局部性原理，将常用的部分驻留在内存中，不常用的就放在磁盘上。</p>
+<p>​    两种典型的动态装载办法：覆盖装入和页映射。</p>
+<p>​    覆盖装入已经基本被淘汰了，因为它需要程序员来编写代码这些模块什么时候装进去，什么时候被替换掉。</p>
+<p>​    页映射是虚拟存储的一部分，简单来说就是将内存和磁盘中的数据和指令按照“页”为单位进行分割，需要哪个装哪个，如果有冲突，按照FIFO或者LRU算法进行替换即可。</p>
+<h6 id="从OS角度来看可执行文件的装载"><a href="#从OS角度来看可执行文件的装载" class="headerlink" title="从OS角度来看可执行文件的装载"></a>从OS角度来看可执行文件的装载</h6><p>​    创建一个进程，然后装载相应的可执行文件并且执行。需要做三件事：1.创建一个独立的虚拟地址空间，2.读取可执行文件头，建立虚拟空间和可执行文件的映射关系，3将CPU的指令寄存器设置成可执行文件的入口地址，启动运行。</p>
+<p>​    第一步是建立虚拟空间和物理空间之前的映射关系，第二部是建立虚拟空间到可执行文件的映射关系。</p>
+<h5 id="动态链接："><a href="#动态链接：" class="headerlink" title="动态链接："></a>动态链接：</h5><p>​    静态连接的缺点有很多，比如浪费磁盘和内存的空间，程序的开发和发布也不方便。</p>
+<p>​    要解决上述问题最简单的办法就是将模块互相分割开来，形成独立的文件，而不是静态的链接在一起。简单的来说，就是不对那些组成程序的目标文件进行链接，而是等到程序运行时才进行链接，也就是说，把链接过程推迟到了运行时再进行。动态链接的一个优点就是程序可以在运行时，动态的选择加载各种程序模块，这个优点可以被用来制作插件（Plug-in）。但是缺点就是如果某个模块更新后接口不兼容的话就导致程序无法运行了。这个问题也叫DDL Hell。</p>
+<p>​    Linux下ELF动态链接文件被称为动态共享对象（DSO,Dynamic Shared Objects）一般是以“.so”为扩展名的一些文件。在Windows中，动态链接文件被叫做动态链接库，“.dll”为扩展名的文件。</p>
+<p>​    共享对象在装载时在虚拟地址空间中的位置非常麻烦。共享对象在编译时不能假设自己在虚拟空间中的位置，为了让共享对象能够在任意地址装载，应用了装载时重定位的办法。静态链接中的重定位叫做链接时重定位。</p>
+<p>​    装载时重定位又引发了一个问题，就是指令部分无法共享，解决办法就是把指令中需要修改的部分分离出来和    数据部分装在一起，数据部分可以在每个进程中都有一个副本，这种方案叫做PIC(position independent code)。</p>
+<p>​    链接的时候没必要把所有功能模块链接到一起，用到的时候才进行绑定，这种方法叫做延迟绑定，可以提升速度。</p>
+<h5 id="库相关"><a href="#库相关" class="headerlink" title="库相关"></a>库相关</h5><p>​    首先要知道应用程序在使用的内存空间中有如下默认区域：堆 ，栈，可执行文件映像，保留区。</p>
+<p>栈：维护函数调用的上下文，且经典OS中栈总是向下增长的，sp指针永远指向栈顶，栈一般保存了函数的返回地址和参数，临时变量，保存的上下文。I386中一个函数的活动记录用ebp和esp来划定范围。</p>
+<p>堆：动态分配内存，比如malloc函数。Linux下的进程堆管理稍微有些复杂，因为它提供了两个系统调用brk(),和mmap()。Windows下进程堆管理时用其提供的一个API叫做VirtualAlloc(),用来向系统申请空间。大小要求是页的整数倍。</p>
+<p>可执行文件映像：存储着可执行文件在内存中的映像。</p>
+<p>保留区：并不是一个单一的内存区域。而是内存 中受保护而禁止访问的内存区域总称。一般极小的地址都是不允许访问的比如 NULL，所以通常将C语言中无效指针赋值为NULL也是出于这个考虑。0地址正常情况下不可能有有效的可访问数据。</p>
+<p>​    程序并不是从main开始执行，在这之前需要经历一个很复杂的过程。进行一系列初始化等。</p>
+<p>​    现代OS一般有两种特权级别，分别为用户和内核模式，一般通过中断从用户模式切换到内核模式。中断有两个属性，一个是中断号，一个是中断处理程序。内核中存在一个数组叫做中断向量表，包含着指向第N号中断处理程序的指针。中断到来时，CPU会停止执行代码，根据中断的中断号，在中断向量表中查询对应的中断处理程序。</p>
+<p>以上。</p>
+<p>另外，由于刚搭建好这个Blog，相关功能还不是很完善，无法评论。SR。。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%93%BE%E6%8E%A5%EF%BC%8C%E8%A3%85%E8%BD%BD%E5%92%8C%E5%BA%93/">链接，装载和库</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/17/OS%E7%AC%94%E8%AE%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">OS</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/13/%E9%93%BE%E8%A1%A8/">
+                        <span class="hidden-mobile">LeetCode 链表 Easy</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -68,7 +68,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Sakura</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -158,7 +158,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/images/bp.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -202,6 +202,14 @@
 
   
   
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
 </div>
 
             
@@ -226,6 +234,12 @@
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">链接，装载和库</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：August 8, 2021 pm
+                
+              </p>
             
             <div class="markdown-body">
               <h5 id="前段时间在看的一本书，比较详细的讲了程序的链接，装载等过程。在此写下一篇读书笔记。"><a href="#前段时间在看的一本书，比较详细的讲了程序的链接，装载等过程。在此写下一篇读书笔记。" class="headerlink" title="前段时间在看的一本书，比较详细的讲了程序的链接，装载等过程。在此写下一篇读书笔记。"></a>前段时间在看的一本书，比较详细的讲了程序的链接，装载等过程。在此写下一篇读书笔记。</h5><p>​    首先，操作系统做了什么：OS的一个功能是提供抽象的接口，另外一个功能是管理硬件资源。</p>
@@ -312,6 +326,15 @@
             </div>
 
             
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
           </article>
         </div>
       </div>
@@ -371,6 +394,30 @@
      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
 
   
 
@@ -429,6 +476,8 @@
   <script  src="/js/local-search.js" ></script>
 
 
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
